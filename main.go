@@ -2,36 +2,20 @@ package main
 
 import "fmt"
 
-type contactInfo struct {
-	email   string
-	zipCode int
-}
-type person struct {
-	firstName string
-	lastName  string
-	contactInfo
-}
-
 func main() {
-	jim := person{
-		firstName: "Jim",
-		lastName:  "Party",
-		contactInfo: contactInfo{
-			email: "test@test.com", zipCode: 84000,
-		},
+
+	colors := map[string]string{
+		"red":   "#ff0000",
+		"green": "#4bf745",
+		"white": "#ffffff",
 	}
 
-	//@definition: &variable = give the memory address is pointing at
-	jim.updateName("Jimmy")
-	jim.print()
+	pringMap(colors)
 }
 
-func (pointerToPerson *person) updateName(newFirstName string) {
-	//@definition: *pointer= take the address and give me the value in the address
-	(*pointerToPerson).firstName = newFirstName
+func pringMap(c map[string]string) {
+	for color, hex := range c {
+		fmt.Println("Hex code for", color, "is", hex)
+	}
 
-}
-
-func (p person) print() {
-	fmt.Printf("%+v", p)
 }
