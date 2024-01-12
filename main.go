@@ -7,11 +7,12 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const (
 	// WEPKeySize256Bits is the size of the 256-bit WEP key in bytes
-	WEPKeySize256Bits = 32
+	WEPKeySize256Bits = 16
 )
 
 func generateWEPKey() (string, error) {
@@ -20,8 +21,9 @@ func generateWEPKey() (string, error) {
 	if err != nil {
 		return "", err
 	}
+	upperHexKey := strings.ToUpper(hex.EncodeToString(keyBytes))
 
-	return hex.EncodeToString(keyBytes), nil
+	return upperHexKey, nil
 }
 
 func main() {
